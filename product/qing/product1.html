@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品介绍</title>
+		<style type="text/css">
+			body{
+				margin-top: 100px;
+				text-align: center;
+			}
+			.top{
+				margin: 0px auto;
+				background-image: url("res/bg.png");
+				background-repeat: no-repeat;
+				background-size: 1200px 600px;
+				width: 1200px;
+				height: 600px;
+				text-align: center;
+				position: relative;
+			}
+			.point{
+				position: absolute;
+			}
+			#right{
+				right: 40px;
+				top: 300px;
+			}
+			#right img{
+				cursor: pointer;
+			}
+			#left{
+				left: 40px;
+				top: 300px;
+			}
+			#left img{
+				cursor: pointer;
+			}
+			#back{
+				position: absolute;
+				left: 20px;
+				top: 30px;
+			}
+			#back img{
+				cursor: pointer;
+			}
+			#buy{
+				position: absolute;
+				bottom: 20px;
+				right: 60px;
+			}
+			#buy img{
+				cursor: pointer;
+			}
+			#type{
+				position: absolute;
+				left: 270px;
+				top: 140px;
+			}
+			#product{
+				position: absolute;
+				top: 240px;
+				left: 300px;
+			}
+			#gap{
+				position: absolute;
+				top:3px;
+				left: 30px;
+				opacity: 0;
+			}
+			#introduct{
+				position: absolute;
+				top: 160px;
+				right: 500px;
+			}
+			#content{
+				position: absolute;
+				top: 190px;
+				right: 265px;
+			}
+			#que{
+				position: absolute;
+				top: 420px;
+				left: 390px;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top">
+			<div class="point" id="right">
+				<img src="res/rightpoint.png" alt width="21.04px" height="38.4px" onclick="jumpRight()"/>
+			</div>
+			<div class="point" id="left">
+				<img src="res/leftpoint.png" alt width="21.04px" height="38.4px" onclick="jumpLeft()" />
+			</div>
+			<div id="back">
+				<img src="res/back.png" alt width="79.44px" height="37.36px" onclick="window.open('/pixi_demo/qing_choose.html')" />
+			</div>
+			<div id="buy"><img src="res/buybtn.png" alt width="60.27px" height="69.6px" onclick='jumpBuy()' /></div>
+			<div id="type"><img id="typeimg" src="res/type1.png" alt width="34.13px" height="70.67px" /></div>
+			<div id="product">
+				<img id="productimg" src="res/product1.png" alt width="216.67px" height="143.47px" />
+				<img id="gap" src="res/gap2.png" alt width="195.2px" height="188.8px" onclick=""/>
+			</div>
+			<div id="que"><img src="res/que2.png" alt width="79.2px" height="26.13px"/></div>
+			<div id="introduct"><img src="res/introduct.png" alt width="62.93px" height="20.27px" /></div>
+			<div id="content"><img id="contentimg" src="res/content1.png" alt width="292.27px" height="218.67x" /></div>
+		</div>
+		<script type="text/javascript">
+			var i=1;
+			var proWidth=[216.67,284.53,237.6,220];
+			var proHeight=[143.47,199.73,227.2,209.067];
+			var protop=[240,200,200,200];
+			var proleft=[300,300,300,300];
+			var contentwidth=[292.27,279.46,276.8,271.47];
+			var contentheight=[218.67,219.2,113.87,262.067];
+			var contentright=[265,280,280,290];
+			function jumpRight(){
+				i++;
+				if(i<=1)
+				i=1;
+				if(i>=4)
+				i=4;
+				if(i<=4 && i>=1){
+					var gap = document.getElementById("gap");
+					var que = document.getElementById("que");
+					gap.style.opacity = 0;
+					que.style.opacity = 0;
+					gap.style.onClick = "";
+					gap.style.cursor = "";
+					if(i==2){
+						
+						gap.style.opacity = 1;
+						que.style.opacity = 1;
+						gap.onclick = function(){
+							window.location.href = '/pixi_demo/mix/qing.html' ;
+						//document.getElementById("gap").style.opacity = 0;
+						};
+						gap.style.cursor = "pointer";
+					}
+					var width = proWidth[i-1];
+					var height = proHeight[i-1];
+					var top = protop[i-1];
+					var left = proleft[i-1];
+					var content = document.getElementById("contentimg");
+					content.src = "res/content"+i+".png";
+					content.style.width = contentwidth[i-1] + "px";
+					content.style.height = contentheight[i-1] + "px";
+					document.getElementById("content").style.right = contentright[i-1]+"px";
+					var product = document.getElementById("productimg");
+					product.src = "res/product"+i+".png";
+					product.style.width = width + "px";
+					product.style.height = height + "px";
+					document.getElementById("product").style.top = top + "px";
+					document.getElementById("product").style.left = left + "px";
+					var type = document.getElementById("typeimg");
+					type.src = "res/type"+i+".png";
+				}
+			}
+			function jumpLeft(){
+				i--;
+				if(i<=1) i=1;
+				if(i>=4) i=4;
+				
+				if(i<=4 && i>=1){
+					var gap = document.getElementById("gap");
+					var que = document.getElementById("que");
+					gap.style.opacity = 0;
+					que.style.opacity = 0;
+					gap.style.onClick = "";
+					gap.style.cursor = "";
+					if(i==2){
+						
+						gap.style.opacity = 1;
+						que.style.opacity = 1;
+						gap.onclick = function(){
+							window.location.href = '/pixi_demo/mix/qing.html' ;
+						d//ocument.getElementById("gap").style.opacity = 0;
+						};
+						gap.style.cursor = "pointer";
+					}
+					var width = proWidth[i-1];
+					var height = proHeight[i-1];
+					var top = protop[i-1];
+					var left = proleft[i-1];
+					var content = document.getElementById("contentimg");
+					content.src = "res/content"+i+".png";
+					content.style.width = contentwidth[i-1] + "px";
+					content.style.height = contentheight[i-1] + "px";
+					document.getElementById("content").style.right = contentright[i-1]+"px";
+					var product = document.getElementById("productimg");
+					product.src = "res/product"+i+".png";
+					product.style.width = width + "px";
+					product.style.height = height + "px";
+					document.getElementById("product").style.top = top + "px";
+					document.getElementById("product").style.left = left + "px";
+					var type = document.getElementById("typeimg");
+					type.src = "res/type"+i+".png";
+				}
+			}
+			
+			function jumpBuy(){
+				window.location.href = '/pixi_demo/buy/qing/' + i + '.html' ;
+			}
+			function missing(){
+				document.getElementById("gap").style.opacity = 0;
+			}
+			
+			
+		</script>
+	</body>
+</html>
