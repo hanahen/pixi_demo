@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+	body{
+		text-align: center;
+		margin-top: 100px;
+	}
+	</style>
+    <title>历史介绍</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+		var app = new PIXI.Application(1200,600);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/hello/bg.png");
+		bg.scale.x=0.3;
+		bg.scale.y=0.3;
+		bg.y=-10;
+        app.stage.addChild(bg);
+        bg.interactive = true;
+        
+		
+		var flag3 = -1;
+		
+		var msg = new PIXI.Sprite.fromImage("res/hello/msg.png");
+		msg.scale.x=0.3;
+		msg.scale.y=0.3;
+		msg.anchor.set(0.5,0.5);
+		msg.x=450;
+		msg.y=300;
+		msg.alpha = 0;
+		app.stage.addChild(msg);
+		msg.interactive = true;
+		msg.on("mousedown",function(){
+			flag3 = 1;
+		})
+		msg.on("mouseup",function(){
+			flag3 = -1;
+		})
+		msg.on("mousemove", moveMsg);
+
+		msg.on("touchstart",function(){
+			flag3 = 1;
+		})
+		msg.on("touchend",function(){
+			flag3 = -1;
+		})
+		msg.on("touchmove", moveMsg);
+
+		
+		var div = new PIXI.Sprite.fromImage("res/hello/bgdiv.png");
+		div.scale.x=0.3;
+		div.scale.y=0.3;
+		div.y=-10;
+		app.stage.addChild(div);
+		
+		var title = new PIXI.Sprite.fromImage("res/hello/title.png");
+		title.scale.x=0.3;
+		title.scale.y=0.3;
+		title.anchor.set(0.5,0.5);
+		title.x=985;
+		title.y=300;
+		title.alpha = 0;
+		app.stage.addChild(title);
+		
+		var Btn = new PIXI.Sprite.fromImage("res/hello/nextBtn.png");
+		Btn.scale.x=0.25;
+		Btn.scale.y=0.25;
+		Btn.anchor.set(0.5,0.5);
+		Btn.x=600;
+		Btn.y=520;
+		Btn.alpha = 0;
+		app.stage.addChild(Btn);
+		Btn.interactive = true;
+		Btn.buttonMode = true;
+		Btn.on("click",disappear);
+		Btn.on("touchstart",disappear);
+		
+//		var slider = new PIXI.Sprite.fromImage("res/hello/slider.png");
+//		slider.scale.x=0.25;
+//		slider.scale.y=0.25;
+//		slider.anchor.set(0.5,0.5);
+//		slider.x=600;
+//		slider.y=475;
+//		slider.alpha = 0;
+//		app.stage.addChild(slider);
+		
+		var left = new PIXI.Sprite.fromImage("res/hello/left.png");
+		left.scale.x=0.3;
+		left.scale.y=0.3;
+		left.y=-10;
+		app.stage.addChild(left);
+		msg.lastPos = 450;
+		function moveMsg(event){
+			
+			
+			
+			if(flag3 == 1){
+				msg.x += (event.data.global.x - msg.lastPos);
+			}
+			
+			if(msg.x >800){
+				msg.x = 800;
+			}
+			if(msg.x <450){
+				msg.x = 450;
+			}
+			msg.lastPos = event.data.global.x;
+			
+		}
+		
+		
+		
+		//渐显动画
+		var flag1 = false;
+		app.ticker.add(animate);
+		function animate(){
+			moveleft();
+			if(flag1){
+			appear_title();
+			appear_msg();
+			appear_Btn();
+			}
+			
+			
+			if(flag){
+				msg.alpha -= 0.04;
+				Btn.alpha -= 0.04;
+				title.alpha -= 0.04;
+				if(title.alpha <= 0){
+					window.location.href = 'choose.html';
+				}
+				//slider.alpha -= 0.04;
+			}
+		}
+		
+		function appear_title(){
+			if(title.alpha>=1){
+				title.alpha=1;
+			}else{
+				title.alpha += 0.02;
+			}
+		}
+		function appear_msg(){
+			
+			if(msg.alpha >=1){
+				msg.alpha = 1;
+			}else{
+				msg.alpha += 0.02;
+			}
+		}
+		function appear_Btn(){
+			if(Btn.alpha>=1){
+				Btn.alpha =1;
+			}else{
+				Btn.alpha += 0.02;
+			}
+			
+		}
+//		function appear_slider(){
+//			if(slider.alpha>=1){
+//				slider.alpha=1;
+//			}else{
+//				slider.alpha += 0.02;
+//			}
+//			
+//		}
+		
+	var flag = false;
+	function disappear(){
+			flag = true;
+			flag1 =false;
+	}
+	function moveleft(){
+		
+		if(left.x <=-1090){
+			left.x = -1090;
+			flag1 = true;
+		}else{
+			left.x -= 5;
+		}
+	}
+
+
+    </script>
+	
+</body>
+</html>

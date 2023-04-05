@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<style type="text/css">
+		body{
+			margin-top: 100px;
+			text-align: center;
+		}
+		#bg{
+			margin: 0 auto;
+			width: 1200px;
+			height: 600px;
+			text-align: center;
+			background: url(res/moment_loading/bg.png) no-repeat;
+			background-size: contain;
+			background-position: center;
+			position: relative;
+		}	
+		
+		#bar{
+			position: absolute;
+			left: 358px;
+			top: 427px;
+			}
+	</style>
+    <title>正在前往清代</title>
+</head>
+<body>
+	<div id="bg">
+		<div id="bar">
+		<img id="bar2" src="res/moment_loading/bar2.png" width="0px" height="18px">
+	</div>
+	</div>
+	
+</body>
+
+<script type="text/javascript">
+	window.onload = move;
+	var width=0;
+
+	function move(){
+		document.getElementById("bar2").style.width=width+"px";
+		width+=15;
+		if(width >= 728){
+			width=728;
+			window.location.href = 'qing_choose.html';
+		}
+		window.requestAnimationFrame(move);
+
+	}
+	
+
+</script>
+
+</html>
+

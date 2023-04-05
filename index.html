@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<style type="text/css">
+		body{
+			margin-top: 100px;
+			text-align: center;
+		}
+	</style>
+    <title>首页</title>
+</head>
+<body>
+
+
+<script type="text/javascript" src="js/pixi.min.js" ></script>
+<script>
+			var app = new PIXI.Application(1200,600);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/boatbg.jpg");
+        bg.anchor.set(0.5,0.5);
+        bg.x = 600;
+        bg.y = 300;
+        bg.width = 1250;
+        bg.height = 650
+        app.stage.addChild(bg);
+
+
+		var mid = new PIXI.Sprite.fromImage("res/mid.png");
+		mid.anchor.set(0.5,0.5);
+		mid.x = 600;
+		mid.y = 280;
+		mid.width = 0;
+        mid.scale.y = 0.25;
+        app.stage.addChild(mid);
+        
+		var left = new PIXI.Sprite.fromImage("res/left.png");
+		left.anchor.set(0.5,0.5);
+		left.x = 600;
+		left.y = 280;
+		left.scale.x = 0.25;
+        left.scale.y = 0.25;
+        app.stage.addChild(left);
+        
+        var right = new PIXI.Sprite.fromImage("res/right.png");
+		right.anchor.set(0.5,0.5);
+		right.x = 600;
+		right.y = 280;
+		right.scale.x = 0.25;
+        right.scale.y = 0.25;
+        app.stage.addChild(right);
+        
+
+        
+        var title = new PIXI.Sprite.fromImage("res/title.png");
+        title.anchor.set(0.5,0.5);
+        title.x = 600;
+        title.y = 300;
+        title.scale.x = 0.25;
+        title.scale.y = 0.25;
+        title.alpha = 0;
+        app.stage.addChild(title);
+        
+        var start = new PIXI.Sprite.fromImage("res/start.png");
+        start.anchor.set(0.5,0.5);
+        start.x = 600;
+        start.y = 550;
+        start.scale.x = 0.25;
+        start.scale.y = 0.25;
+        app.stage.addChild(start);
+        start.interactive = true;
+        start.buttonMode = true;
+        start.on("click",jump);
+        start.on("touchstart",jump);
+        
+        app.ticker.add(animate);
+        
+        function animate(){
+        	
+        	moveBg();
+        	movejuanzhou();
+        	changeTitle();
+        	
+        }
+        
+        var flag1 = 1;
+        var flag2 = 1;
+        function moveBg(){
+        	bg.rotation += flag1*0.0002;
+          	bg.y += flag2*0.25;
+        	if(bg.rotation >= 0.007)
+        	flag1 = -1;
+        	if(bg.rotation <= -0.007)
+        	flag1 = 1;
+        	if(bg.y > 305){
+        		flag2 = -1;
+        	}
+        	if(bg.y<295){
+        		flag2 = 1;
+        	}
+        }
+        function jump(){
+        	window.location.href = 'hello.html';
+        }
+        var flag = false;
+        function movejuanzhou(){
+        	if(mid.width<512){
+        		left.x -= 4;
+        		right.x += 4;
+        		mid.width += 8;
+        	}
+        	if(mid.width>=512){
+        		mid.width = 512;
+        		flag = true;
+        	}
+        	
+       	}
+        function changeTitle(){
+        	if(flag){
+        		title.alpha += 0.01;
+        	}
+        }
+
+	
+</script>
+	
+
+</body>
+
+</html>
+

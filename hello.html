@@ -1,0 +1,156 @@
+<!--历史介绍-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>历史介绍</title>
+		<style type="text/css">
+			body{
+				text-align: center;
+				margin-top: 100px;
+			}
+			.top{
+				margin: 0 auto;
+				width: 1200px;
+				height: 600px;
+				text-align: center;
+				position: relative;
+				
+				background-image: url(res/hello/bg.png);
+				background-repeat:no-repeat;
+				background-size:cover;
+			}
+			.content{
+				margin: 0 auto;
+				margin-top: 100px;
+				width: 700px;
+				height: 350px;
+				overflow-x: scroll;
+			}
+			.btn{
+				margin-top: 20px;
+				opacity: 0;
+			}
+			.btn img{
+				cursor: pointer;
+
+			}
+			.line{
+				margin: 0 auto;
+				width: 800px;
+				display:flex;
+      			align-items:center;
+      			
+			}
+
+			#bgleft{
+				margin: 0 auto;
+				width: 1200px;
+				height: 602.2px;
+				text-align: center;
+				background-image: url(res/hello/left.png);
+				background-repeat:no-repeat;
+				background-size:cover;
+				position: absolute;
+				right: 0px;
+				top: -2px;
+				z-index: 2;
+				
+			}
+			#title{
+				position: relative;
+				opacity: 0;
+				top: 40px;
+				z-index: 1;
+			}
+			#msg{
+				opacity: 0;
+				
+			}
+			#msg img{
+				margin-top: 30px;
+			}
+			
+			.content::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width : 1px;  /*高宽分别对应横竖滚动条的尺寸*/
+				height: 5px;
+			}
+			.content::-webkit-scrollbar-thumb {
+				/*滚动条里面小方块*/
+				border-radius: 10px;
+				box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+				background   : #95703c;
+
+			}
+			.content::-webkit-scrollbar-track {
+				/*滚动条里面轨道*/
+				box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+				border-radius: 3px;
+				background   : #c6b89e;
+			}
+
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		<div class="top">
+			<br/>
+		<div id = "bgleft"></div>
+		<div class="line">
+			<div  id ="msg" align="center" class="content">
+				<img src="res/hello/msg.png" alt width="950px" height="290px" />
+			</div>
+			<div  id="title" class="title">
+				<img src="res/hello/title.png" alt width="40px" height="163px" />
+			</div>
+		</div>
+		<br/>
+		<div id="btn" class="btn">
+			<img src="res/hello/nextBtn.png" alt width="10%" height="10%" onclick="jump()"/></div>
+		</div>
+		<script type="text/javascript">
+		window.onload = move;
+		var right = 0;
+		var opacity = 0;
+		
+		function move(){
+		  document.getElementById("bgleft").style.right = right+"px";
+    	  right+=5;
+    	  
+    	  //第一组图片移出显示区域，重置左边距
+    	  if(right >= 1142){
+    		  right = 1135;
+    		  document.getElementById("bgleft").style.right = right+"px";
+    		  opacity += 0.02;
+    		  if(opacity >= 1){
+    		  	opacity=1;
+    		  }
+    		  document.getElementById("title").style.opacity = opacity;
+    		  document.getElementById("msg").style.opacity = opacity;
+    		  document.getElementById("btn").style.opacity = opacity;
+    		  
+    	  }
+    	  
+    	  
+    	  //帧频：每秒60帧，每隔16.66毫秒执行一次
+    	  window.requestAnimationFrame(move);
+		}
+		var opacity2 = 1;
+		function jump(){
+			opacity2 -= 0.04;
+			
+			document.getElementById("title").style.opacity = opacity2;
+    		document.getElementById("msg").style.opacity = opacity2;
+    		document.getElementById("btn").style.opacity = opacity2;
+			if(opacity2 <= 0){
+    		  	window.location.href = 'choose.html';
+    		}
+			window.requestAnimationFrame(jump);
+		}
+			
+		</script>
+	</body>
+</html>

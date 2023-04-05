@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>明朝选择界面</title>
+		<style type="text/css">
+			body{
+				text-align: center;
+				margin-top: 100px;
+				
+				
+			}
+			.top{
+				margin: 0px auto;
+				background-image: url("res/ming_choose/bg.png");
+				background-repeat: no-repeat;
+				background-size: cover;
+				width: 1200px;
+				height: 600px;
+				text-align: center;
+				position: relative;
+			}
+			
+			 #back{
+				position: absolute;
+				top:20px;
+				left:-50px;
+			}
+			#back img{
+				cursor: pointer;
+			}
+			#title{
+				padding-top:20px;
+			}
+			.line{
+				margin: 0px auto;
+				background-image: url("res/ming_choose/line.png");
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				display: flex;
+				width: 468px;
+				height: 76.8px;
+				justify-content:space-evenly;
+				align-items:center;
+				
+			}
+			.line img{
+				cursor: pointer;
+			}
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="top">
+			<div id="back"><img src="res/ming_choose/back.png" alt width="25%" height="25%" onclick="window.open('choose.html')"/></div>
+			<div id="title"><img src="res/ming_choose/title.png" alt width="25%x" height="25%"/></div>
+			<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+			<div class="line">
+				<img src="res/ming_choose/i1.png" alt width="40px" height="59.3px" onclick="window.open('product/ming/product1.html')"/>
+				<img src="res/ming_choose/i3.png" alt width="51.3px" height="59.3px" onclick="window.open('product/ming/product2.html')"/>
+				<img src="res/ming_choose/i4.png" alt width="113px" height="50px" onclick="window.open('product/ming/product3.html')"/>
+				<img src="res/ming_choose/i2.png" alt width="47.3px" height="50.3px" onclick="window.open('product/ming/product4.html')"/>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

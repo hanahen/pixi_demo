@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选择界面</title>
+		<style type="text/css">
+			body{
+				text-align: center;
+				margin-top: 100px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/pixi.min.js" ></script>
+		<script>
+			
+			var app = new PIXI.Application(1200,600);
+        	document.body.appendChild(app.view);
+        	var bg = new PIXI.Sprite.fromImage("res/choose/bg.png");
+        	bg.width = 1200;
+        	bg.height = 600;
+        	app.stage.addChild(bg);
+        	bg.interactive = true;
+        	bg.on("mousemove",move);
+        	bg.on("touchmove",move);
+        	function move(event){
+        		if(flag==1){
+	        		var pos = event.data.getLocalPosition(app.stage);
+	        		var x = (shaozi.y-pos.y)/(shaozi.x-pos.x);
+	        		var atan = Math.atan(x);
+	        		if(pos.x>shaozi.x){
+	        			shaozi.rotation = atan;
+	        		}else{
+	        			shaozi.rotation = atan+Math.PI;
+	        		}
+        		}
+        		
+        		
+        		
+        	}
+        	
+        	var shaozi = new PIXI.Sprite.fromImage("res/choose/shaozi.png");
+			shaozi.scale.x = 0.25;
+			shaozi.scale.y = 0.25;
+			shaozi.anchor.set(0.2,0.5);
+			shaozi.x = 555;
+			shaozi.y = 255;
+        	app.stage.addChild(shaozi);
+        	
+
+			
+        	var back = new PIXI.Sprite.fromImage("res/choose/back.png");
+        	back.scale.x = 0.25;
+        	back.scale.y = 0.25;
+        	back.anchor.set(0.5,0.5);
+        	back.x = 80;
+        	back.y = 50;
+        	app.stage.addChild(back);
+        	back.interactive = true;
+        	back.buttonMode = true;
+        	back.on("click",backJump);
+        	back.on("touchstart",backJump);
+        	
+        	var address = "";
+			var flag = 1;
+			
+        	function backJump(){
+        		window.location.href = 'hello.html';
+        	}
+        	
+        	var mingTexture1 = new PIXI.Texture.fromImage("res/choose/ming.png");
+        	var mingTexture2 = new PIXI.Texture.fromImage("res/choose/ming1.png");
+        	var ming = new PIXI.Sprite(mingTexture1);
+        	ming.scale.x = 0.25;
+        	ming.scale.y = 0.25;
+        	ming.anchor.set(0.5,0.5);
+        	ming.x = 320;
+        	ming.y = 450;
+        	app.stage.addChild(ming);
+        	ming.interactive = true;
+        	ming.buttonMode = true;
+        	ming.on("click",mingJump);
+        	ming.on("touchstart",mingJump);
+        	ming.on("mouseover",shineMing);
+        	ming.on("mouseout",darkMing);
+
+        	function mingJump(){
+        		flag *= -1;
+        		ming.texture = mingTexture2;
+        		if(flag == -1){
+        			address = 'ming_loading.html';
+        			qing.texture = qingTexture1;
+        			ming.texture = mingTexture2;
+        			moment.texture = momentTexture1;
+        		}
+        		
+        		else{
+        			address = '';
+        			qing.texture = qingTexture1;
+        			ming.texture = mingTexture1;
+        			moment.texture = momentTexture1;
+        		}
+        		
+        		var x = (shaozi.y-ming.y)/(shaozi.x-ming.x);
+	        	var atan = Math.atan(x);
+	        	if(ming.x>shaozi.x){
+	        		shaozi.rotation = atan;
+	        	}else{
+	        		shaozi.rotation = atan+Math.PI;
+	        		}
+        	}
+        	function shineMing(){
+        		ming.texture = mingTexture2;
+        	}
+        	function darkMing(){
+        		if(address == 'ming_loading.html'){
+        			qing.texture = qingTexture1;
+        			moment.texture = momentTexture1;
+        		}else{
+        			ming.texture = mingTexture1;
+        		}
+        		if(flag == 1){
+        			qing.texture = qingTexture1;
+        			ming.texture = mingTexture1;
+        			moment.texture = momentTexture1;
+        		}
+        		
+        	}
+        	var qingTexture1 = new PIXI.Texture.fromImage("res/choose/qing.png");
+        	var qingTexture2 = new PIXI.Texture.fromImage("res/choose/qing1.png");
+        	var qing = new PIXI.Sprite(qingTexture1);
+        	qing.scale.x = 0.25;
+        	qing.scale.y = 0.25;
+        	qing.anchor.set(0.5,0.5);
+        	qing.x = 560;
+        	qing.y = 60;
+        	app.stage.addChild(qing);
+        	qing.interactive = true;
+        	qing.buttonMode = true;
+        	qing.on("click",qingJump);
+        	qing.on("touchstart",qingJump);
+        	qing.on("mouseover",shineQing);
+        	qing.on("mouseout",darkQing);
+        	function qingJump(){
+        		flag *= -1;
+        		if(flag == -1){
+        		address = 'qing_loading.html';
+        		qing.texture = qingTexture2;
+        		ming.texture = mingTexture1;
+        		moment.texture = momentTexture1;
+        		}
+        		else{
+        			address = '';
+        			qing.texture = qingTexture1;
+        			ming.texture = mingTexture1;
+        			moment.texture = momentTexture1;
+        		}
+        		
+        		var x = (shaozi.y-qing.y)/(shaozi.x-qing.x);
+	        	var atan = Math.atan(x);
+	        	if(qing.x>shaozi.x){
+	        		shaozi.rotation = atan;
+	        	}else{
+	        		shaozi.rotation = atan+Math.PI;
+	        		}
+        	}
+        	function shineQing(){
+        		qing.texture = qingTexture2;
+        	}
+        	function darkQing(){
+        		if(address == 'qing_loading.html'){
+        			ming.texture = mingTexture1;
+        			moment.texture = momentTexture1;
+        		}else{
+        			qing.texture = qingTexture1;
+        		}
+        		if(flag == 1){
+        			qing.texture = qingTexture1;
+        			ming.texture = mingTexture1;
+        			moment.texture = momentTexture1;
+        		}
+        		
+        		
+        	}
+        	
+        	var momentTexture1 = new PIXI.Texture.fromImage("res/choose/moment.png");
+        	var momentTexture2 = new PIXI.Texture.fromImage("res/choose/moment1.png");
+        	var moment = new PIXI.Sprite(momentTexture1);
+        	moment.scale.x = 0.25;
+        	moment.scale.y = 0.25;
+        	moment.anchor.set(0.5,0.5);
+        	moment.x = 800;
+        	moment.y = 450;
+        	app.stage.addChild(moment);
+        	moment.interactive = true;
+        	moment.buttonMode = true;
+        	moment.on("click",momentJump);
+        	moment.on("touchstart",momentJump);
+        	moment.on("mouseover",shineMoment);
+        	moment.on("mouseout",darkMoment);
+        	function momentJump(){
+        		flag *= -1;
+        		if(flag == -1){
+        		address = 'moment_loading.html';
+        		qing.texture = qingTexture1;
+        		ming.texture = mingTexture1;
+        		moment.texture = momentTexture2;
+        		}
+        		else{
+        			address = '';
+        			qing.texture = qingTexture1;
+        			ming.texture = mingTexture1;
+        			moment.texture = momentTexture1;
+        		}
+        		var x = (shaozi.y-moment.y)/(shaozi.x-moment.x);
+	        	var atan = Math.atan(x);
+	        	if(moment.x>shaozi.x){
+	        		shaozi.rotation = atan;
+	        	}else{
+	        		shaozi.rotation = atan+Math.PI;
+	        		}
+        	}
+        	
+        	function shineMoment(){
+        		moment.texture = momentTexture2;
+        	}
+        	function darkMoment(){
+        		if(address == 'moment_loading.html'){
+        			ming.texture = mingTexture1;
+        			qing.texture = qingTexture1;
+        		}else{
+        			moment.texture = momentTexture1;
+        		}
+        		if(flag == 1){
+        			qing.texture = qingTexture1;
+        			ming.texture = mingTexture1;
+        			moment.texture = momentTexture1;
+        		}
+        		
+        	}
+        	
+        	var choose = new PIXI.Sprite.fromImage("res/choose/queding.png");
+        	choose.scale.x = 0.25;
+        	choose.scale.y = 0.25;
+        	choose.anchor.set(0.5,0.5);
+        	choose.x = 570;
+        	choose.y = 570;
+        	app.stage.addChild(choose);
+        	choose.interactive = true;
+        	choose.buttonMode = true;
+        	choose.on("click",function(){
+        		window.location.href = address;
+        	});
+        	choose.on("touchstart",function(){
+        		window.location.href = address;
+        	});
+        	
+        	
+
+		</script>
+			
+			
+		
+	</body>
+</html>
