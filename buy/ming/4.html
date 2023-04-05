@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>购买界面</title>
+		<style type="text/css">
+		body{
+            margin-top: 100px;
+		}
+		#bg{
+			margin: 0 auto;
+			position: relative;
+			width: 1200px;
+			height: 600px;
+			background-image: url(../res/bg.png);
+			background-repeat:no-repeat;
+			background-size:cover;
+		}
+		#item{
+			position:absolute;
+			left: 320px;
+			top:320px;
+			opacity: 0;
+		}
+	
+		#back img{
+			cursor: pointer;
+		}
+		#close img{
+			cursor: pointer;
+		}
+		</style>
+	</head>
+	
+	<body>
+		<div id="bg">
+			<div id="item">
+				<img src="../res/item8.png" width="200px" height="250px">
+			</div>
+			
+			<div id="back" style="position:absolute;left: 40px;top:30px;">
+				<img src="../res/back.png" width="90px" height="45px" onclick="window.open('/pixi_demo/product/ming/product4.html')">
+			</div>
+			
+			<div id="window" style="position:absolute;left:915px;top:70px;">
+				<img src="../res/window8.png" width="250px" height="450px">
+			</div>
+			
+			<div id="close" style="position:absolute;left:1025px;top:85px;">
+				<img src="../res/close.png" width="20px" height="20px" onclick="disappear()">
+			</div>
+			
+			<div id="shoppingBtn" style="position: absolute;left:1000px;top:400px;">
+				<img src="res/shopping.png" width="90px" height="45px">
+			</div>
+		</div>
+		
+
+	
+	<script type="text/javascript">
+		window.onload = hello;
+		var opacity=0;
+		function hello(){
+			if(opacity<1){
+				opacity+=0.02;
+			}
+			document.getElementById("item").style.opacity=opacity;
+			
+			
+			window.requestAnimationFrame(hello);
+		}
+		
+		function disappear(){
+			document.getElementById("close").style.opacity=0;
+			document.getElementById("window").style.opacity=0;
+			document.getElementById("shoppingBtn").style.opacity=0;
+		}
+	</script>		
+	</body>
+</html>
