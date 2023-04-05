@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>修复页面</title>
+		<style type="text/css">
+			body{
+				margin-top: 100px;
+			}
+			.top{
+				margin: 0px auto;
+				background-image: url("res/bg.png");
+				background-repeat: no-repeat;
+				background-size: 1200px 600px;
+				width: 1200px;
+				height: 600px;
+				text-align: center;
+				position: relative;
+			}
+			#title{
+				padding-top: 50px;
+			}
+			#back{
+				position: absolute;
+				top: 50px;
+				left: 130px;
+				cursor: pointer;
+			}
+			#flush{
+				position: absolute;
+				top: 260px;
+				left: 80px;
+				cursor: pointer;
+			}
+			#jiaoshui{
+				position: absolute;
+				top: 400px;
+				left: 80px;
+				cursor: pointer;
+			}
+			#product{
+				position: absolute;
+				left: 500px;
+				top: 150px;
+				
+			}
+			#productimg{
+				position: absolute;
+				
+				z-index: 0;
+			}
+			#gap1{
+				position: absolute;
+				top: 1px;
+				left: 13px;
+				z-index: 1;
+			}
+			#gap2{
+				position: absolute;
+				left: -18px;
+				top: 50px;
+				z-index: 2;
+			}
+			#icon1{
+				position: absolute;
+				right: 140px;
+				top: 170px;
+			}
+			#icon2{
+				position: absolute;
+				right: 180px;
+				top: 320px;
+				
+			}
+			#jiesuo_btn1{
+				position: absolute;
+				top: 20px;
+				left: 110px;
+				cursor: pointer;
+			}
+			
+			#icon3{
+				position: absolute;
+				right: 200px;
+				top: 450px;
+				
+			}
+			#jiesuo_btn2{
+				position: absolute;
+				top: 30px;
+				left: 100px;
+				cursor: pointer;
+			}
+		
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="top">
+			<div id="title"><img src="res/ming_title.png" alt width="123.2px" height="46.4px"></div>
+			<div id="back"><img src="res/back.png" alt width="79.73px" height="37.33px" onclick="window.open('../product/ming/product1.html')"></div>
+			<div id="flush">
+				<img src="res/flush.png" alt width="179.2px" height="29.33px" onclick="gap2missing()" />
+				<br />
+				<img src="res/flush_title.png" alt width="32.8px" height="15.73px" />	
+			</div>
+			<div id="jiaoshui">
+				<img src="res/jiaoshui.png" alt width="166.67px" height="38.93px" onclick="gap1missing()" />
+				<br />
+				<img src="res/jiaoshui_title.png" alt width="33.33px" height="17.33px" />	
+			</div>
+			<div id="product">
+				<img id="productimg" src="res/ming_product.png" alt width="178.13px" height="380.267px" />
+				<img id="gap1" src="res/ming_gap1.png" alt width="163.46px" height="371.467px"  />
+				<img id="gap2" src="res/ming_gap2.png" alt width="208.267px" height="320.8px"  />	
+			</div>
+			<div id="icon1"><img src="res/ming_indexicon.png" alt width="42.67px" height="84.47px" /></div>
+			<div id="icon2">
+				<img src="res/ming_2icon.png" alt width="85.33px" height="59.2px" />
+				<img id="jiesuo_btn1" src="res/jiesuo_btn.png" alt width="90.4px" height="29.87px" onclick="window.open('./qing.html')" />
+			</div>
+			<div id="icon3">
+				<img src="res/ming_3icon.png" alt width="55.73px" height="81.33px">
+				<img id="jiesuo_btn2" src="res/jiesuo_btn.png" alt width="90.4px" height="29.87px" onclick="window.open('./moment.html')" />
+			</div>	
+		</div>
+		<script type="text/javascript">
+			var opacity1 = 1;
+			function gap1missing(){
+				opacity1 -= 0.04;
+			
+				document.getElementById("gap1").style.opacity = opacity1;
+	    		
+	    		window.requestAnimationFrame(gap1missing);	
+			}
+			
+			var opacity2 = 1;
+			function gap2missing(){
+				
+				opacity2 -= 0.04;
+			
+				document.getElementById("gap2").style.opacity = opacity2;
+	    		window.requestAnimationFrame(gap2missing);	
+				
+			}
+			
+		</script>
+		
+	</body>
+</html>
